@@ -7,7 +7,7 @@ app.use(express.json());
 const cardRoute = require("./routes/Card");
 
 const hostname = "127.0.0.1";
-const port = 3000;
+const port = 8080;
 const uri = "mongodb+srv://test-user:G6DSXYuwVLsxD4Pg@cluster0.a2goo9m.mongodb.net/?retryWrites=true&w=majority";
 // const client = new MongoClient(uri);
 
@@ -33,6 +33,7 @@ async function main(){
 //   });
 
 app.get("/createCards", (req, res) => {
+    console.log("It works!")
     res.status(200).send({
         test: 'hello world',
         test2: "it works!"
