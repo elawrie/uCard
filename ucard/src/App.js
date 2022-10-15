@@ -16,6 +16,7 @@ const App = () => {
     <div className="App">
       <button onClick={() => alert('button pressed')}>Create uCard</button> 
       <Person name={'Tyler Kay'} email={'coolemail@email.net'} number={451671328}/>
+      <button onClick={() => alert('button pressed')}>Recieve uCard</button> 
     </div>
   );
 }
