@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const Card = require("../models/cardModel");
 
-
+// Create Card
 router.post("/", async(req, res) => {
     // const newCard = new Card(req.body);
     // try {
@@ -23,6 +23,16 @@ router.post("/", async(req, res) => {
         const card = await newCard.save();
         res.status(200).json(card);
     } catch (err) {
+        res.status(500).json(err);
+    }
+});
+
+// Get Card
+router.get("/:id", async(req, res) =>{
+    try{
+        const card = await Card.findById(req.params.id);
+        res.status(200).json(card);
+    } catch (err){
         res.status(500).json(err);
     }
 });

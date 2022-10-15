@@ -39,7 +39,7 @@ app.get("/createCards", (req, res) => {
     })
 })
 
-app.use("/api/createCard", cardRoute);
+app.use("/api/Card", cardRoute);
 
 app.listen(port, hostname, () => {
     console.log(`Server running at http://${hostname}:${port}/`);
