@@ -14,7 +14,7 @@ const App = () => {
   return (
     
     <div className="App">
-      <button onClick={() => alert('buttonPressed')}></button> 
+      <button onClick={() => alert('button pressed')}>Create uCard</button> 
       <Person name={'Tyler Kay'} email={'coolemail@email.net'} number={451671328}/>
     </div>
   );
