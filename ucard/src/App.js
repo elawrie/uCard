@@ -1,19 +1,30 @@
-import React from 'react';
-import { ChatEngine } from 'react-chat-engine';
-import ChatFeed from './components/ChatFeed';
-
+import { useState } from 'react';
 import './App.css';
+import {Container} from './components/styles/Container.styled';
+import Header from './components/Styles';
 
+const Person = (props) => {
+  return (
+    <>
+      <h1>Name: {props.name} </h1>
+      <h2>Email: {props.email}</h2>
+      <h2>Number: {props.number}</h2> 
+    </>
+  );
+}
 const App = () => {
-    return (
-        <ChatEngine
-            height="100vh"
-            projectID="104267ed-fff8-4300-bbb9-2fca7e95e456"
-            userName="User1"
-            userSecret="secret"
-            renderChatFeed={(chatAppProps) => <ChatFeed {...chatAppProps} />}
-        />
-    );
+  return (
+    <>
+    <Header />
+    <Container>
+      <div className="App">
+        <button onClick={() => alert('button pressed')}>Create uCard</button> 
+        <Person name={'Tyler Kay'} email={'coolemail@email.net'} number={451671328}/>
+        <button onClick={() => alert('button pressed')}>Recieve uCard</button> 
+      </div>
+    </Container>
+    </>
+  );
 }
 
-export default App;
+export default App
