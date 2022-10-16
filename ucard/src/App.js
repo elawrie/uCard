@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import './App.css';
 import {Container} from './components/styles/Container.styled';
-import Header from './components/Styles';
+import Header from './components/styles/Header';
 
 const Person = (props) => {
   return (
