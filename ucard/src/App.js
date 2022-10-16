@@ -1,7 +1,17 @@
-import { useState } from 'react';
+//import { useState } from 'react';
+import { ThemeProvider } from 'styled-components';
 import './App.css';
 import {Container} from './components/styles/Container.styled';
 import Header from './components/styles/Header';
+import GlobalStyle from './components/styles/Global';
+
+const theme = {
+  colors: {
+    header: '#282c34',
+    body: 'bone',
+    footer: '#003333',
+  }
+}
 
 const Person = (props) => {
   return (
@@ -13,17 +23,21 @@ const Person = (props) => {
   );
 }
 const App = () => {
+  
   return (
-    <>
-    <Header />
-    <Container>
-      <div className="App">
-        <button onClick={() => alert('button pressed')}>Create uCard</button> 
-        <Person name={'Tyler Kay'} email={'coolemail@email.net'} number={451671328}/>
-        <button onClick={() => alert('button pressed')}>Recieve uCard</button> 
-      </div>
-    </Container>
-    </>
+    <ThemeProvider theme={theme}>
+      <>
+      <GlobalStyle />
+        <Header />
+        <Container>
+          <div className="App">
+            <button onClick={() => alert('button pressed')}>Create uCard</button> 
+            <Person name={'Tyler Kay'} email={'coolemail@email.net'} number={451671328}/>
+            <button onClick={() => alert('button pressed')}>Recieve uCard</button> 
+          </div>
+        </Container>
+      </>
+    </ThemeProvider>
   );
 }
 
