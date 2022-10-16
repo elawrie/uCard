@@ -1,30 +1,77 @@
-import { useState } from 'react';
+import React from "react"
+import axios from "axios"
+import {useEffect, useState} from "react"
 import './App.css';
-import {Container} from './components/styles/Container.styled';
-import Header from './components/Styles';
 
-const Person = (props) => {
-  return (
-    <>
-      <h1>Name: {props.name} </h1>
-      <h2>Email: {props.email}</h2>
-      <h2>Number: {props.number}</h2> 
-    </>
-  );
-}
-const App = () => {
-  return (
-    <>
-    <Header />
-    <Container>
-      <div className="App">
-        <button onClick={() => alert('button pressed')}>Create uCard</button> 
-        <Person name={'Tyler Kay'} email={'coolemail@email.net'} number={451671328}/>
-        <button onClick={() => alert('button pressed')}>Recieve uCard</button> 
-      </div>
-    </Container>
-    </>
-  );
+function App() {
+	const [ name, setName ] = useState("")
+	const [ companyName, setCompanyName ] = useState("")
+	const [ jobPosition, setJobPosition ] = useState("")
+	const [ phoneNumber, setPhoneNumber ] = useState("")
+	const [ email, setEmail ] = useState("")
+
+
+	const [ cardData, setCardData] = useState("")
+
+	useEffect(() => {
+		getData()
+	}, [])
+	
+
+	async function postCard(e) {
+		e.preventDefault()
+		try {
+			await axios.post("http://localhost:8080/createCards2", {
+				name, companyName, jobPosition, phoneNumber, email
+			})
+		} catch (error) {
+			console.error(error)
+		}
+	}
+
+	const getData = async () => {
+		// return await axios.get("http://localhost:8080/getCard/634b71d848f71fc8186fd6e1")
+		// 	.then(res => console.log(res.data);
+
+		// setCardData(cardData);
+		// console.log(cardData);
+
+		// const promise = axios.get("http://localhost:8080/getCard/634b71d848f71fc8186fd6e1")
+		// const dataPromise = promise.then((response) => response.data)
+		// console.log(dataPromise)
+
+		const response = await axios.get("http://localhost:8080/getCard/634b71d848f71fc8186fd6e1")
+		console.log(response.data)
+		return response.data
+
+	  };
+
+	// async function getCard(e) {
+	// 	e.preventDefault()
+	// 	axios.get("http://localhost:8080/getCard/634b71d848f71fc8186fd6e1")
+	// 		.then(res => {
+	// 			const cardData = res.data;
+	// 			this.setState({cardData})
+	// 		})
+	// }
+
+	return (
+		<div className="App">
+			<form onSubmit={postCard}>
+				<input type="text" value={name} onChange={(e) => setName(e.target.value)} />
+				<input type="text" value={companyName} onChange={(e) => setCompanyName(e.target.value)} />
+				<input type="text" value={jobPosition} onChange={(e) => setJobPosition(e.target.value)} />
+				<input type="text" value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} />
+				<input type="text" value={email} onChange={(e) => setEmail(e.target.value)} />
+				<button type="submit">Send Card</button>
+			</form>
+
+			{/* <h1>{JSON.stringify(cardData)} </h1> */}
+			<h2>{getData()}</h2>
+			
+		</div>
+
+	)
 }
 
 export default App

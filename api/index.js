@@ -7,6 +7,7 @@ const cors = require("cors")
 app.use(cors())
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }))
+const Card = require("./models/cardModel");
 const cardRoute = require("./routes/Card");
 
 const hostname = "127.0.0.1";
@@ -43,9 +44,47 @@ app.get("/createCards", (req, res) => {
     })
 })
 
+
+app.get("/getCard/:id", async (req, res) => {
+    try{
+        const card = await Card.findById(req.params.id);
+        res.status(200).json(card);
+    } catch (err){
+        res.status(500).json(err);
+    }        
+})
+
 app.post("/createCards2", async (req, res) => {
 	let { name } = req.body
-	console.log(name)
+    let { companyName } = req.body
+    let { jobPosition } = req.body
+    let { phoneNumber } = req.body
+    let { email } = req.body
+
+    console.log(name)
+    console.log(companyName)
+    console.log(jobPosition)
+    console.log(phoneNumber)
+    console.log(email)
+	
+    try {
+        const newCard = new Card({
+            name: name,
+            companyName: email,
+            jobPosition: jobPosition,
+            phoneNumber: phoneNumber,
+            email: email,
+        });
+        const card = await newCard.save();
+        res.status(200).json(card);
+        console.log();
+        console.log("It works! It's in the database!");
+    } catch (err) {
+        res.status(500).json(err);
+    }
+
+
+
 })
 
 app.use("/api/Card", cardRoute);
