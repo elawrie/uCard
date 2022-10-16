@@ -1,9 +1,9 @@
-//import { useState } from 'react';
+import { useState } from 'react';
 import { ThemeProvider } from 'styled-components';
 import './App.css';
 import {Container} from './components/styles/Container.styled';
 import Card from './components/Card';
-import Header from './components/styles/Header';
+// import Header from './components/styles/Header';
 import GlobalStyle from './components/styles/Global';
 import content from './Content';
 
@@ -30,7 +30,6 @@ const App = () => {
     <ThemeProvider theme={theme}>
       <>
       <GlobalStyle />
-        <Header />
         <Container>
           {content.map((item, index) => (
             <Card key={index} item={item} />
