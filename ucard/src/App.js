@@ -2,8 +2,10 @@
 import { ThemeProvider } from 'styled-components';
 import './App.css';
 import {Container} from './components/styles/Container.styled';
+import Card from './components/Card';
 import Header from './components/styles/Header';
 import GlobalStyle from './components/styles/Global';
+import content from './Content';
 
 const theme = {
   colors: {
@@ -13,15 +15,15 @@ const theme = {
   }
 }
 
-const Person = (props) => {
-  return (
-    <>
-      <h1>Name: {props.name} </h1>
-      <h2>Email: {props.email}</h2>
-      <h2>Number: {props.number}</h2> 
-    </>
-  );
-}
+// const Person = (props) => {
+//   return (
+//     <>
+//       <h1>Name: {props.name} </h1>
+//       <h2>Email: {props.email}</h2>
+//       <h2>Number: {props.number}</h2> 
+//     </>
+//   );
+// }
 const App = () => {
   
   return (
@@ -30,11 +32,9 @@ const App = () => {
       <GlobalStyle />
         <Header />
         <Container>
-          <div className="App">
-            <button onClick={() => alert('button pressed')}>Create uCard</button> 
-            <Person name={'Tyler Kay'} email={'coolemail@email.net'} number={451671328}/>
-            <button onClick={() => alert('button pressed')}>Recieve uCard</button> 
-          </div>
+          {content.map((item, index) => (
+            <Card key={index} item={item} />
+          ))}
         </Container>
       </>
     </ThemeProvider>
