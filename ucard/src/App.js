@@ -1,5 +1,7 @@
-import {useState} from 'react';
+import { useState } from 'react';
 import './App.css';
+import {Container} from './components/styles/Container.styled';
+import Header from './components/Styles';
 
 const Person = (props) => {
   return (
@@ -12,13 +14,17 @@ const Person = (props) => {
 }
 const App = () => {
   return (
-    
-    <div className="App">
-      <button onClick={() => alert('button pressed')}>Create uCard</button> 
-      <Person name={'Tyler Kay'} email={'coolemail@email.net'} number={451671328}/>
-      <button onClick={() => alert('button pressed')}>Recieve uCard</button> 
-    </div>
+    <>
+    <Header />
+    <Container>
+      <div className="App">
+        <button onClick={() => alert('button pressed')}>Create uCard</button> 
+        <Person name={'Tyler Kay'} email={'coolemail@email.net'} number={451671328}/>
+        <button onClick={() => alert('button pressed')}>Recieve uCard</button> 
+      </div>
+    </Container>
+    </>
   );
 }
 
-export default App;
+export default App
