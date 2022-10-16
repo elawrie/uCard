@@ -1,9 +1,8 @@
 import { ThemeProvider } from 'styled-components';
-import './App.css';
-import {Container} from './components/styles/Container.styled';
 import Card from './components/Card';
+import {Container} from './components/styles/Container.styled';
 import GlobalStyle from './components/styles/Global';
-import content from './Content';
+import content from './content';
 
 const theme = {
   colors: {
