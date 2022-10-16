@@ -3,7 +3,10 @@ const http = require("http");
 const mongoose = require("mongoose");
 const express = require("express");
 const app = express();
+const cors = require("cors")
+app.use(cors())
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }))
 const cardRoute = require("./routes/Card");
 
 const hostname = "127.0.0.1";
@@ -38,6 +41,11 @@ app.get("/createCards", (req, res) => {
         test: 'hello world',
         test2: "it works!"
     })
+})
+
+app.post("/createCards2", async (req, res) => {
+	let { name } = req.body
+	console.log(name)
 })
 
 app.use("/api/Card", cardRoute);
